@@ -1,0 +1,203 @@
+Last login: Wed Oct 14 10:12:33 on ttys000
+asadali@asads-MacBook-Air ~ % cd /Users/asadali/2601600062/infraguardian 
+asadali@asads-MacBook-Air infraguardian % vagrant up ubuntu
+Bringing machine 'ubuntu' up with 'virtualbox' provider...
+==> ubuntu: Checking if box 'bento/ubuntu-22.04' version '202510.26.0' is up to date...
+==> ubuntu: Clearing any previously set forwarded ports...
+==> ubuntu: Clearing any previously set network interfaces...
+==> ubuntu: Preparing network interfaces based on configuration...
+    ubuntu: Adapter 1: nat
+    ubuntu: Adapter 2: hostonly
+==> ubuntu: Forwarding ports...
+    ubuntu: 22 (guest) => 2222 (host) (adapter 1)
+==> ubuntu: Running 'pre-boot' VM customizations...
+==> ubuntu: Booting VM...
+==> ubuntu: Waiting for machine to boot. This may take a few minutes...
+    ubuntu: SSH address: 127.0.0.1:2222
+    ubuntu: SSH username: vagrant
+    ubuntu: SSH auth method: private key
+    ubuntu: Warning: Connection reset. Retrying...
+    ubuntu: Warning: Remote connection disconnect. Retrying...
+==> ubuntu: Machine booted and ready!
+==> ubuntu: Checking for guest additions in VM...
+==> ubuntu: Setting hostname...
+==> ubuntu: Configuring and enabling network interfaces...
+==> ubuntu: Mounting shared folders...
+    ubuntu: /Users/asadali/2601600062/infraguardian => /vagrant
+==> ubuntu: Machine already provisioned. Run `vagrant provision` or use the `--provision`
+==> ubuntu: flag to force provisioning. Provisioners marked to run always will still run.
+asadali@asads-MacBook-Air infraguardian % vagrant ssh ubuntu 
+Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.0-160-generic aarch64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Wed Oct 14 04:45:59 AM UTC 2026
+
+  System load:           0.07
+  Usage of /:            19.8% of 29.82GB
+  Memory usage:          9%
+  Swap usage:            0%
+  Processes:             105
+  Users logged in:       0
+  IPv4 address for eth0: 10.0.2.15
+  IPv6 address for eth0: fd17:625c:f037:2:a00:27ff:fed9:fa93
+
+
+This system is built by the Bento project by Chef Software
+More information can be found at https://github.com/chef/bento
+
+Use of this system is acceptance of the OS vendor EULA and License Agreements.
+Last login: Tue Oct 13 16:51:42 2026 from 10.0.2.2
+vagrant@ig-ubuntu:~$ ls -lh /var/log
+total 1.3M
+-rw-r--r--  1 root      root             669 Oct 13 07:52 alternatives.log
+drwxr-xr-x  2 root      root            4.0K Oct 13 07:52 apt
+-rw-r-----  1 syslog    adm              43K Oct 14 04:46 auth.log
+-rw-r--r--  1 root      root               0 Oct 23  2025 bootstrap.log
+-rw-rw----  1 root      utmp               0 Oct 23  2025 btmp
+-rw-r-----  1 syslog    adm             225K Oct 14 04:45 cloud-init.log
+-rw-r-----  1 root      adm              14K Oct 14 04:45 cloud-init-output.log
+-rw-r-----  1 root      adm              44K Oct 14 04:45 dmesg
+-rw-r-----  1 root      adm              44K Oct 13 16:46 dmesg.0
+-rw-r-----  1 root      adm              13K Oct 13 16:40 dmesg.1.gz
+-rw-r-----  1 root      adm              13K Oct 13 07:41 dmesg.2.gz
+-rw-r-----  1 root      adm              13K Oct 13 06:42 dmesg.3.gz
+-rw-r-----  1 root      adm               28 Oct 23  2025 dmesg.4.gz
+-rw-r--r--  1 root      root            6.1K Oct 13 07:52 dpkg.log
+-rw-r--r--  1 root      root               0 Oct 23  2025 faillog
+-rw-r-----  1 root      root              50 Oct 13 07:55 firewalld
+drwxrwx---  4 root      adm             4.0K Oct 23  2025 installer
+drwxr-sr-x+ 4 root      systemd-journal 4.0K Oct 13 06:42 journal
+-rw-r-----  1 syslog    adm             252K Oct 14 04:46 kern.log
+drwxr-xr-x  2 landscape landscape       4.0K Oct 23  2025 landscape
+-rw-rw-r--  1 root      utmp            290K Oct 14 04:46 lastlog
+drwx------  2 root      root            4.0K Sep 11  2024 private
+-rw-r-----  1 syslog    adm             550K Oct 14 04:46 syslog
+-rw-r--r--  1 root      root               0 Oct 23  2025 ubuntu-advantage.log
+-rw-rw-r--  1 root      utmp             14K Oct 14 04:46 wtmp
+vagrant@ig-ubuntu:~$ sudo journalctl -n 20
+Oct 14 04:46:23 ig-ubuntu multipath[2107]: sda: failed to get sysfs uid: Invalid argument
+Oct 14 04:46:23 ig-ubuntu multipath[2107]: sda: failed to get sgio uid: No data available
+Oct 14 04:46:23 ig-ubuntu multipathd[453]: sda: failed to get sysfs uid: Invalid argument
+Oct 14 04:46:23 ig-ubuntu multipathd[453]: sda: failed to get sgio uid: No data available
+Oct 14 04:46:23 ig-ubuntu multipathd[453]: sda: failed to get path uid
+Oct 14 04:46:23 ig-ubuntu multipathd[453]: uevent trigger error
+Oct 14 04:46:32 ig-ubuntu multipathd[453]: sdb: not initialized after 3 udev retriggers
+Oct 14 04:46:33 ig-ubuntu multipathd[453]: sda: not initialized after 3 udev retriggers
+Oct 14 04:46:33 ig-ubuntu multipathd[453]: sdb: add missing path
+Oct 14 04:46:33 ig-ubuntu multipathd[453]: sdb: failed to get sysfs uid: Invalid argument
+Oct 14 04:46:33 ig-ubuntu multipathd[453]: sdb: failed to get sgio uid: No data available
+Oct 14 04:46:33 ig-ubuntu multipathd[453]: sdb: no WWID in state "undef
+Oct 14 04:46:33 ig-ubuntu multipathd[453]: ", giving up
+Oct 14 04:46:33 ig-ubuntu multipathd[453]: sdb: check_path() failed, removing
+Oct 14 04:46:34 ig-ubuntu multipathd[453]: sda: add missing path
+Oct 14 04:46:34 ig-ubuntu multipathd[453]: sda: failed to get sysfs uid: Invalid argument
+Oct 14 04:46:34 ig-ubuntu multipathd[453]: sda: failed to get sgio uid: No data available
+Oct 14 04:46:34 ig-ubuntu multipathd[453]: sda: no WWID in state "undef
+Oct 14 04:46:34 ig-ubuntu multipathd[453]: ", giving up
+Oct 14 04:46:34 ig-ubuntu multipathd[453]: sda: check_path() failed, removing
+vagrant@ig-ubuntu:~$ sudo journalctl -n 500 | grep -i "error"
+top - 04:49:20 up 3 min,  1 user,  load average: 0.74, 0.25, 0.09
+Tasks:  99 total,   2 running,  97 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 15.3 us, 34.8 sy,  0.0 ni, 49.9 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   1838.6 total,   1294.4 free,    132.5 used,    411.7 buff/cache
+MiB Swap:   3783.0 total,   3783.0 free,      0.0 used.   1623.2 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                                                                                                                                
+   2133 vagrant   20   0    5204    788    708 R 100.0   0.0   1:19.25 yes                                                                                                                                    
+      1 root      20   0  167836  11156   7456 S   0.0   0.6   0:00.44 systemd                                                                                                                                
+      2 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kthreadd                                                                                                                               
+      3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp                                                                                                                                 
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_par_gp                                                                                                                             
+      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 slub_flushwq                                                                                                                           
+      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 netns                                                                                                                                  
+      7 root      20   0       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0-events                                                                                                                     
+      8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-events_highpri                                                                                                            
+      9 root      20   0       0      0      0 I   0.0   0.0   0:00.22 kworker/u4:0-loop0                                                                                                                     
+     10 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 mm_percpu_wq                                                                                                                           
+     11 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_tasks_rude_                                                                                                                        
+     12 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_tasks_trace                                                                                                                        
+     13 root      20   0       0      0      0 S   0.0   0.0   0:00.02 ksoftirqd/0                                                                                                                            
+     14 root      20   0       0      0      0 I   0.0   0.0   0:00.06 rcu_sched                                                                                                                              
+     15 root      rt   0       0      0      0 S   0.0   0.0   0:00.00 migration/0                                                                                                                            
+     16 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/0                                                                                                                          
+     17 root      20   0       0      0      0 I   0.0   0.0   0:00.02 kworker/0:1-events                                                                                                                     
+     18 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0                                                                                                                                
+     19 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/1                                                                                                                                
+     20 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/1                                                                                                                          
+     21 root      rt   0       0      0      0 S   0.0   0.0   0:00.00 migration/1                                                                                                                            
+     22 root      20   0       0      0      0 S   0.0   0.0   0:00.00 ksoftirqd/1                                                                                                                            
+     23 root      20   0       0      0      0 I   0.0   0.0   0:00.00 kworker/1:0-mm_percpu_wq                                                                                                               
+     24 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/1:0H-events_highpri                                                                                                            
+     25 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kdevtmpfs                                                                                                                              
+     26 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 inet_frag_wq                                                                                                                           
+     27 root      20   0       0      0      0 I   0.0   0.0   0:00.02 kworker/1:1-events                                                                                                                     
+     28 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kauditd                                                                                                                                
+     29 root      20   0       0      0      0 S   0.0   0.0   0:00.00 khungtaskd                                                                                                                             
+     30 root      20   0       0      0      0 S   0.0   0.0   0:00.00 oom_reaper                                                                                                                             
+     31 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 writeback                                                                                                                              
+     32 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kcompactd0                                                                                                                             
+     33 root      25   5       0      0      0 S   0.0   0.0   0:00.00 ksmd                                                                                                                                   
+     34 root      39  19       0      0      0 S   0.0   0.0   0:00.00 khugepaged                                                                                                                             
+     80 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kintegrityd                                                                                                                            
+     81 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kblockd                                                                                                                                
+     82 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 blkcg_punt_bio                                                                                                                         
+     83 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 tpm_dev_wq                                                                                                                             
+     84 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 ata_sff                                                                                                                                
+     85 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 md                                                                                                                                     
+     86 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 edac-poller                                                                                                                            
+     87 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 devfreq_wq                                                                                                                             
+     88 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 watchdogd                                                                                                                              
+     89 root      20   0       0      0      0 I   0.0   0.0   0:00.00 kworker/u4:1-loop1                                                                                                                     
+     90 root      20   0       0      0      0 I   0.0   0.0   0:00.03 kworker/u4:2-events_power_efficient                                                                                                    
+     91 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/1:1H-kblockd                                                                                                                   
+     92 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kswapd0                                                                                                                                
+     93 root      20   0       0      0      0 S   0.0   0.0   0:00.00 ecryptfs-kthrea                                                                                                                        
+     95 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kthrotld                                                                                                                               
+     96 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 acpi_thermal_pm                                                                                                                        
+     97 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 mld                                                                                                                                    
+     98 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 ipv6_addrconf                                                                                                                          
+vagrant@ig-ubuntu:~$ sudo lsof -p $PID
+COMMAND  PID    USER   FD   TYPE DEVICE SIZE/OFF   NODE NAME
+yes     2133 vagrant  cwd    DIR  253,1     4096 786436 /home/vagrant
+yes     2133 vagrant  rtd    DIR  253,1     4096      2 /
+yes     2133 vagrant  txt    REG  253,1    22808 132396 /usr/bin/yes
+yes     2133 vagrant  mem    REG  253,1  3048928 132082 /usr/lib/locale/locale-archive
+yes     2133 vagrant  mem    REG  253,1  1661968 151621 /usr/lib/aarch64-linux-gnu/libc.so.6
+yes     2133 vagrant  mem    REG  253,1   187776 131538 /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1
+yes     2133 vagrant    0u   CHR  136,0      0t0      3 /dev/pts/0
+yes     2133 vagrant    1w   CHR    1,3      0t0      5 /dev/null
+yes     2133 vagrant    2u   CHR  136,0      0t0      3 /dev/pts/0
+vagrant@ig-ubuntu:~$ strace -c ls /var/log
+alternatives.log  auth.log	 btmp		 cloud-init-output.log	dmesg.0     dmesg.2.gz	dmesg.4.gz  faillog    installer  kern.log   lastlog  syslog		    wtmp
+apt		  bootstrap.log  cloud-init.log  dmesg			dmesg.1.gz  dmesg.3.gz	dpkg.log    firewalld  journal	  landscape  private  ubuntu-advantage.log
+% time     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+  0.00    0.000000           0         2           ioctl
+  0.00    0.000000           0         2         2 statfs
+  0.00    0.000000           0         2         2 faccessat
+  0.00    0.000000           0         7           openat
+  0.00    0.000000           0         9           close
+  0.00    0.000000           0         2           getdents64
+  0.00    0.000000           0         5           read
+  0.00    0.000000           0         2           write
+  0.00    0.000000           0         8           newfstatat
+  0.00    0.000000           0         1           set_tid_address
+  0.00    0.000000           0         1           set_robust_list
+  0.00    0.000000           0         3           brk
+  0.00    0.000000           0         7           munmap
+  0.00    0.000000           0         1           execve
+  0.00    0.000000           0        15           mmap
+  0.00    0.000000           0         8           mprotect
+  0.00    0.000000           0         1           prlimit64
+  0.00    0.000000           0         1           getrandom
+  0.00    0.000000           0         1           statx
+  0.00    0.000000           0         1           rseq
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.000000           0        79         4 total
+vagrant@ig-ubuntu:~$ kill $PID
+vagrant@ig-ubuntu:~$ ps -p $PID
+    PID TTY          TIME CMD
+[1]+  Terminated              yes > /dev/null
