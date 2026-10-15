@@ -1,0 +1,208 @@
+Last login: Thu Oct 15 12:29:54 on console
+asadali@asads-MacBook-Air ~ % cd /Users/asadali/2601600062/infraguardian 
+asadali@asads-MacBook-Air infraguardian % vagrant up ubuntu
+Bringing machine 'ubuntu' up with 'virtualbox' provider...
+==> ubuntu: Checking if box 'bento/ubuntu-22.04' version '202510.26.0' is up to date...
+==> ubuntu: Clearing any previously set forwarded ports...
+==> ubuntu: Fixed port collision for 22 => 2222. Now on port 2250.
+==> ubuntu: Clearing any previously set network interfaces...
+==> ubuntu: Preparing network interfaces based on configuration...
+    ubuntu: Adapter 1: nat
+    ubuntu: Adapter 2: hostonly
+==> ubuntu: Forwarding ports...
+    ubuntu: 22 (guest) => 2250 (host) (adapter 1)
+==> ubuntu: Running 'pre-boot' VM customizations...
+==> ubuntu: Booting VM...
+==> ubuntu: Waiting for machine to boot. This may take a few minutes...
+    ubuntu: SSH address: 127.0.0.1:2250
+    ubuntu: SSH username: vagrant
+    ubuntu: SSH auth method: private key
+    ubuntu: Warning: Connection reset. Retrying...
+==> ubuntu: Machine booted and ready!
+==> ubuntu: Checking for guest additions in VM...
+==> ubuntu: Setting hostname...
+==> ubuntu: Configuring and enabling network interfaces...
+==> ubuntu: Mounting shared folders...
+    ubuntu: /Users/asadali/2601600062/infraguardian => /vagrant
+==> ubuntu: Machine already provisioned. Run `vagrant provision` or use the `--provision`
+==> ubuntu: flag to force provisioning. Provisioners marked to run always will still run.
+asadali@asads-MacBook-Air infraguardian % vagrant ssh ubuntu 
+Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.0-160-generic aarch64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu Oct 15 07:16:01 AM UTC 2026
+
+  System load:           0.48
+  Usage of /:            19.9% of 29.82GB
+  Memory usage:          12%
+  Swap usage:            0%
+  Processes:             123
+  Users logged in:       0
+  IPv4 address for eth0: 10.0.2.15
+  IPv6 address for eth0: fd17:625c:f037:2:a00:27ff:fed9:fa93
+
+
+This system is built by the Bento project by Chef Software
+More information can be found at https://github.com/chef/bento
+
+Use of this system is acceptance of the OS vendor EULA and License Agreements.
+Last login: Wed Oct 14 05:26:04 2026 from 10.0.2.2
+vagrant@ig-ubuntu:~$  sudo apt update
+Hit:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease
+Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [128 kB]
+Get:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease [127 kB]                                          
+Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [129 kB]                                           
+Get:5 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 Packages [3,763 kB]                                
+Get:6 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main Translation-en [576 kB]                                  
+Get:7 http://ports.ubuntu.com/ubuntu-ports jammy-updates/universe arm64 Packages [1,364 kB]                            
+Get:8 http://ports.ubuntu.com/ubuntu-ports jammy-updates/universe Translation-en [326 kB]                              
+Get:9 http://ports.ubuntu.com/ubuntu-ports jammy-security/main arm64 Packages [3,511 kB]                               
+Get:10 http://ports.ubuntu.com/ubuntu-ports jammy-security/main Translation-en [509 kB]                                
+Get:11 http://ports.ubuntu.com/ubuntu-ports jammy-security/universe arm64 Packages [1,135 kB]                          
+Fetched 11.6 MB in 12s (973 kB/s)                                                                                      
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+187 packages can be upgraded. Run 'apt list --upgradable' to see them.
+vagrant@ig-ubuntu:~$ sudo apt update 
+Hit:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease
+Hit:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease
+Hit:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease
+Hit:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+187 packages can be upgraded. Run 'apt list --upgradable' to see them.
+vagrant@ig-ubuntu:~$ sudo apt install rsync -y
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Suggested packages:
+  python3-braceexpand
+The following packages will be upgraded:
+  rsync
+1 upgraded, 0 newly installed, 0 to remove and 186 not upgraded.
+Need to get 438 kB of archives.
+After this operation, 16.4 kB of additional disk space will be used.
+Get:1 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 rsync arm64 3.2.7-0ubuntu0.22.04.7 [438 kB]
+Fetched 438 kB in 3s (157 kB/s) 
+(Reading database ... 47580 files and directories currently installed.)
+Preparing to unpack .../rsync_3.2.7-0ubuntu0.22.04.7_arm64.deb ...
+Unpacking rsync (3.2.7-0ubuntu0.22.04.7) over (3.2.7-0ubuntu0.22.04.4) ...
+Setting up rsync (3.2.7-0ubuntu0.22.04.7) ...
+rsync.service is a disabled or a static unit not running, not starting it.
+Processing triggers for man-db (2.10.2-1) ...
+Scanning processes...                                                                                                   
+Scanning processor microcode...                                                                                         
+Scanning linux images...                                                                                                
+
+Running kernel seems to be up-to-date.
+
+Failed to check for processor microcode upgrades.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+vagrant@ig-ubuntu:~$ rsync --version
+rsync  version 3.2.7  protocol version 31
+Copyright (C) 1996-2022 by Andrew Tridgell, Wayne Davison, and others.
+Web site: https://rsync.samba.org/
+Capabilities:
+    64-bit files, 64-bit inums, 64-bit timestamps, 64-bit long ints,
+    socketpairs, symlinks, symtimes, hardlinks, hardlink-specials,
+    hardlink-symlinks, IPv6, atimes, batchfiles, inplace, append, ACLs,
+    xattrs, optional secluded-args, iconv, prealloc, stop-at, no crtimes
+Optimizations:
+    no SIMD-roll, no asm-roll, openssl-crypto, no asm-MD5
+Checksum list:
+    xxh128 xxh3 xxh64 (xxhash) md5 md4 sha1 none
+Compress list:
+    zstd lz4 zlibx zlib none
+Daemon auth list:
+    sha512 sha256 sha1 md5 md4
+
+rsync comes with ABSOLUTELY NO WARRANTY.  This is free software, and you
+are welcome to redistribute it under certain conditions.  See the GNU
+General Public Licence for details.
+vagrant@ig-ubuntu:~$ mkdir -p ~/backup_lab/source
+vagrant@ig-ubuntu:~$  echo "Student Information" > ~/backup_lab/source/student.txt
+vagrant@ig-ubuntu:~$ echo "Linux Lab Report" > ~/backup_lab/source/report.txt
+vagrant@ig-ubuntu:~$ echo "Sample Data" > ~/backup_lab/source/data.txt
+vagrant@ig-ubuntu:~$ ls -l ~/backup_lab/source
+total 12
+-rw-rw-r-- 1 vagrant vagrant 12 Oct 15 07:20 data.txt
+-rw-rw-r-- 1 vagrant vagrant 17 Oct 15 07:20 report.txt
+-rw-rw-r-- 1 vagrant vagrant 20 Oct 15 07:19 student.txt
+vagrant@ig-ubuntu:~$ vi backup.sh
+vagrant@ig-ubuntu:~$ ls 
+backup_lab  backup.sh
+vagrant@ig-ubuntu:~$ cd..
+-bash: cd..: command not found
+vagrant@ig-ubuntu:~$ cd backup_lab
+vagrant@ig-ubuntu:~/backup_lab$ ls
+source
+vagrant@ig-ubuntu:~/backup_lab$ cd..
+-bash: cd..: command not found
+vagrant@ig-ubuntu:~/backup_lab$ cd ..
+vagrant@ig-ubuntu:~$ bash backup.sh 
+Starting backup...
+Source: /home/vagrant/backup_lab/source/
+sending incremental file list
+./
+data.txt
+report.txt
+student.txt
+
+sent 320 bytes  received 83 bytes  806.00 bytes/sec
+total size is 49  speedup is 0.12
+Daily backup completed: /home/vagrant/backup_lab/backups/daily/2026-10-15
+Retention cleanup completed.
+
+BACKUP REPORT
+----------------------------
+Date   : Thu Oct 15 07:32:20 AM UTC 2026
+Source : /home/vagrant/backup_lab/source/
+Backup : /home/vagrant/backup_lab/backups/daily/2026-10-15
+Status : SUCCESS
+----------------------------
+Backup operation finished.
+vagrant@ig-ubuntu:~$ ls
+backup_lab  backup.sh
+vagrant@ig-ubuntu:~$ cd backup_lab
+vagrant@ig-ubuntu:~/backup_lab$ ls
+backups  source
+vagrant@ig-ubuntu:~/backup_lab$ cd backups
+vagrant@ig-ubuntu:~/backup_lab/backups$ ls
+daily  monthly  yearly
+vagrant@ig-ubuntu:~/backup_lab/backups$ cd daily
+vagrant@ig-ubuntu:~/backup_lab/backups/daily$ ls
+2026-10-15
+vagrant@ig-ubuntu:~/backup_lab/backups/daily$ cd ..
+vagrant@ig-ubuntu:~/backup_lab/backups$ cd ..
+vagrant@ig-ubuntu:~/backup_lab$ cd monthly
+-bash: cd: monthly: No such file or directory
+vagrant@ig-ubuntu:~/backup_lab$ cd backups
+vagrant@ig-ubuntu:~/backup_lab/backups$ cd monthly
+vagrant@ig-ubuntu:~/backup_lab/backups/monthly$ ls
+vagrant@ig-ubuntu:~/backup_lab/backups/monthly$ cd ..
+vagrant@ig-ubuntu:~/backup_lab/backups$ cd yearly
+vagrant@ig-ubuntu:~/backup_lab/backups/yearly$ ls
+vagrant@ig-ubuntu:~/backup_lab/backups/yearly$ cd ..
+vagrant@ig-ubuntu:~/backup_lab/backups$ cd ..
+vagrant@ig-ubuntu:~/backup_lab$ cd source
+vagrant@ig-ubuntu:~/backup_lab/source$ ls
+data.txt  report.txt  student.txt
+vagrant@ig-ubuntu:~/backup_lab/source$ cat data.txt
+Sample Data
+vagrant@ig-ubuntu:~/backup_lab/source$ cat report.txt
+Linux Lab Report
+vagrant@ig-ubuntu:~/backup_lab/source$ cat student.txt
+Student Information
+vagrant@ig-ubuntu:~/backup_lab/source$ 
