@@ -1,0 +1,295 @@
+Last login: Fri Oct 16 14:26:49 on ttys000
+asadali@asads-MacBook-Air ~ % cd /Users/asadali/2601600062/infraguardian 
+asadali@asads-MacBook-Air infraguardian % vagrant ssh ubuntu                         
+Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.0-160-generic aarch64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Fri Oct 16 09:13:13 AM UTC 2026
+
+  System load:           0.0
+  Usage of /:            20.0% of 29.82GB
+  Memory usage:          12%
+  Swap usage:            0%
+  Processes:             104
+  Users logged in:       0
+  IPv4 address for eth0: 10.0.2.15
+  IPv6 address for eth0: fd17:625c:f037:2:a00:27ff:fed9:fa93
+
+
+This system is built by the Bento project by Chef Software
+More information can be found at https://github.com/chef/bento
+
+Use of this system is acceptance of the OS vendor EULA and License Agreements.
+Last login: Fri Oct 16 08:58:22 2026 from 10.0.2.2
+vagrant@ig-ubuntu:~$ sudo apt update
+Hit:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease
+Hit:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease
+Hit:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease
+Hit:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+186 packages can be upgraded. Run 'apt list --upgradable' to see them.
+vagrant@ig-ubuntu:~$ sudo apt install python3 -y
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+python3 is already the newest version (3.10.6-1~22.04.1).
+0 upgraded, 0 newly installed, 0 to remove and 186 not upgraded.
+vagrant@ig-ubuntu:~$ systemctl --version
+systemd 249 (249.11-0ubuntu3.17)
++PAM +AUDIT +SELINUX +APPARMOR +IMA +SMACK +SECCOMP +GCRYPT +GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY -P11KIT -QRENCODE +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified
+vagrant@ig-ubuntu:~$  python3 –-version
+python3: can't open file '/home/vagrant/–-version': [Errno 2] No such file or directory
+vagrant@ig-ubuntu:~$ python3 --version
+Python 3.10.12
+vagrant@ig-ubuntu:~$ ps -p 1 -o pid,comm,args
+    PID COMMAND         COMMAND
+      1 systemd         /sbin/init autoinstall
+vagrant@ig-ubuntu:~$ sudo mkdir -p /opt/Expr7
+vagrant@ig-ubuntu:~$ ls -l /opt
+total 8
+drwxr-xr-x 2 vagrant vagrant 4096 Oct 16 09:10 Expr7
+drwxr-xr-x 7 root    root    4096 Oct 23  2025 VBoxGuestAdditions-7.2.4
+vagrant@ig-ubuntu:~$ sudo chown -R $USER:$USER /opt/Expr7
+vagrant@ig-ubuntu:~$ cd /opt/E
+-bash: cd: /opt/E: No such file or directory
+vagrant@ig-ubuntu:~$ cd /opt/Expr7
+vagrant@ig-ubuntu:/opt/Expr7$ pwd
+/opt/Expr7
+vagrant@ig-ubuntu:/opt/Expr7$ ls -la
+total 8
+drwxr-xr-x 2 vagrant vagrant 4096 Oct 16 09:10 .
+drwxr-xr-x 4 root    root    4096 Oct 16 09:10 ..
+vagrant@ig-ubuntu:/opt/Expr7$ nano app.py
+vagrant@ig-ubuntu:/opt/Expr7$ python3 /opt/Expr7/app.py
+2026-10-16 09:22:53,458 - INFO - InfraGuardian Python application starting
+2026-10-16 09:22:53,458 - INFO - Application is healthy - check number 1
+2026-10-16 09:23:03,469 - INFO - Application is healthy - check number 2
+2026-10-16 09:23:13,480 - INFO - Application is healthy - check number 3
+2026-10-16 09:23:23,483 - INFO - Application is healthy - check number 4
+2026-10-16 09:23:33,490 - INFO - Application is healthy - check number 5
+2026-10-16 09:23:43,499 - INFO - Application is healthy - check number 6
+2026-10-16 09:23:53,510 - INFO - Application is healthy - check number 7
+2026-10-16 09:24:03,521 - INFO - Application is healthy - check number 8
+2026-10-16 09:24:13,533 - INFO - Application is healthy - check number 9
+2026-10-16 09:24:23,544 - INFO - Application is healthy - check number 10
+2026-10-16 09:24:33,555 - INFO - Application is healthy - check number 11
+2026-10-16 09:24:43,567 - INFO - Application is healthy - check number 12
+2026-10-16 09:24:53,578 - INFO - Application is healthy - check number 13
+2026-10-16 09:25:03,590 - INFO - Application is healthy - check number 14
+2026-10-16 09:25:13,601 - INFO - Application is healthy - check number 15
+2026-10-16 09:25:23,613 - INFO - Application is healthy - check number 16
+2026-10-16 09:25:33,624 - INFO - Application is healthy - check number 17
+2026-10-16 09:25:43,636 - INFO - Application is healthy - check number 18
+2026-10-16 09:25:53,647 - INFO - Application is healthy - check number 19
+2026-10-16 09:26:03,659 - INFO - Application is healthy - check number 20
+2026-10-16 09:26:13,671 - INFO - Application is healthy - check number 21
+2026-10-16 09:26:23,682 - INFO - Application is healthy - check number 22
+2026-10-16 09:26:33,694 - INFO - Application is healthy - check number 23
+2026-10-16 09:26:43,705 - INFO - Application is healthy - check number 24
+2026-10-16 09:26:53,717 - INFO - Application is healthy - check number 25
+2026-10-16 09:27:03,728 - INFO - Application is healthy - check number 26
+2026-10-16 09:27:13,739 - INFO - Application is healthy - check number 27
+2026-10-16 09:27:23,751 - INFO - Application is healthy - check number 28
+2026-10-16 09:27:33,762 - INFO - Application is healthy - check number 29
+2026-10-16 09:27:43,774 - INFO - Application is healthy - check number 30
+2026-10-16 09:27:53,785 - INFO - Application is healthy - check number 31
+2026-10-16 09:28:03,797 - INFO - Application is healthy - check number 32
+2026-10-16 09:28:13,809 - INFO - Application is healthy - check number 33
+2026-10-16 09:28:23,820 - INFO - Application is healthy - check number 34
+2026-10-16 09:28:33,832 - INFO - Application is healthy - check number 35
+2026-10-16 09:28:43,843 - INFO - Application is healthy - check number 36
+2026-10-16 09:28:53,854 - INFO - Application is healthy - check number 37
+2026-10-16 09:29:03,866 - INFO - Application is healthy - check number 38
+2026-10-16 09:29:13,878 - INFO - Application is healthy - check number 39
+2026-10-16 09:29:23,891 - INFO - Application is healthy - check number 40
+2026-10-16 09:29:33,902 - INFO - Application is healthy - check number 41
+2026-10-16 09:29:43,914 - INFO - Application is healthy - check number 42
+2026-10-16 09:29:53,926 - INFO - Application is healthy - check number 43
+2026-10-16 09:30:03,937 - INFO - Application is healthy - check number 44
+2026-10-16 09:30:13,948 - INFO - Application is healthy - check number 45
+2026-10-16 09:30:23,959 - INFO - Application is healthy - check number 46
+2026-10-16 09:30:33,971 - INFO - Application is healthy - check number 47
+2026-10-16 09:30:43,984 - INFO - Application is healthy - check number 48
+2026-10-16 09:30:53,995 - INFO - Application is healthy - check number 49
+2026-10-16 09:31:04,006 - INFO - Application is healthy - check number 50
+2026-10-16 09:31:14,018 - INFO - Application is healthy - check number 51
+2026-10-16 09:31:24,029 - INFO - Application is healthy - check number 52
+2026-10-16 09:31:34,040 - INFO - Application is healthy - check number 53
+2026-10-16 09:31:44,052 - INFO - Application is healthy - check number 54
+2026-10-16 09:31:54,065 - INFO - Application is healthy - check number 55
+2026-10-16 09:32:04,076 - INFO - Application is healthy - check number 56
+2026-10-16 09:32:14,087 - INFO - Application is healthy - check number 57
+2026-10-16 09:32:24,098 - INFO - Application is healthy - check number 58
+2026-10-16 09:32:34,110 - INFO - Application is healthy - check number 59
+2026-10-16 09:32:44,122 - INFO - Application is healthy - check number 60
+2026-10-16 09:32:54,133 - INFO - Application is healthy - check number 61
+2026-10-16 09:33:04,139 - INFO - Application is healthy - check number 62
+2026-10-16 09:33:14,150 - INFO - Application is healthy - check number 63
+2026-10-16 09:33:24,162 - INFO - Application is healthy - check number 64
+2026-10-16 09:33:34,173 - INFO - Application is healthy - check number 65
+2026-10-16 09:33:44,184 - INFO - Application is healthy - check number 66
+2026-10-16 09:33:54,195 - INFO - Application is healthy - check number 67
+2026-10-16 09:34:04,207 - INFO - Application is healthy - check number 68
+2026-10-16 09:34:14,218 - INFO - Application is healthy - check number 69
+2026-10-16 09:34:24,230 - INFO - Application is healthy - check number 70
+2026-10-16 09:34:34,241 - INFO - Application is healthy - check number 71
+2026-10-16 09:34:44,252 - INFO - Application is healthy - check number 72
+2026-10-16 09:34:54,262 - INFO - Application is healthy - check number 73
+2026-10-16 09:35:04,263 - INFO - Application is healthy - check number 74
+2026-10-16 09:35:14,274 - INFO - Application is healthy - check number 75
+2026-10-16 09:35:24,285 - INFO - Application is healthy - check number 76
+2026-10-16 09:35:34,297 - INFO - Application is healthy - check number 77
+2026-10-16 09:35:44,312 - INFO - Application is healthy - check number 78
+2026-10-16 09:35:54,324 - INFO - Application is healthy - check number 79
+2026-10-16 09:36:04,334 - INFO - Application is healthy - check number 80
+2026-10-16 09:36:14,346 - INFO - Application is healthy - check number 81
+2026-10-16 09:36:24,357 - INFO - Application is healthy - check number 82
+2026-10-16 09:36:34,373 - INFO - Application is healthy - check number 83
+2026-10-16 09:36:44,384 - INFO - Application is healthy - check number 84
+2026-10-16 09:36:54,396 - INFO - Application is healthy - check number 85
+2026-10-16 09:37:04,412 - INFO - Application is healthy - check number 86
+2026-10-16 09:37:14,424 - INFO - Application is healthy - check number 87
+2026-10-16 09:37:24,434 - INFO - Application is healthy - check number 88
+2026-10-16 09:37:34,445 - INFO - Application is healthy - check number 89
+2026-10-16 09:37:44,457 - INFO - Application is healthy - check number 90
+2026-10-16 09:37:54,473 - INFO - Application is healthy - check number 91
+2026-10-16 09:38:04,485 - INFO - Application is healthy - check number 92
+2026-10-16 09:38:14,496 - INFO - Application is healthy - check number 93
+2026-10-16 09:38:24,508 - INFO - Application is healthy - check number 94
+2026-10-16 09:38:34,519 - INFO - Application is healthy - check number 95
+2026-10-16 09:38:44,530 - INFO - Application is healthy - check number 96
+2026-10-16 09:38:54,542 - INFO - Application is healthy - check number 97
+2026-10-16 09:39:04,553 - INFO - Application is healthy - check number 98
+2026-10-16 09:39:14,563 - INFO - Application is healthy - check number 99
+2026-10-16 09:39:24,575 - INFO - Application is healthy - check number 100
+2026-10-16 09:39:34,586 - INFO - Application is healthy - check number 101
+2026-10-16 09:39:44,597 - INFO - Application is healthy - check number 102
+2026-10-16 09:39:54,611 - INFO - Application is healthy - check number 103
+2026-10-16 09:40:04,623 - INFO - Application is healthy - check number 104
+2026-10-16 09:40:14,635 - INFO - Application is healthy - check number 105
+2026-10-16 09:40:24,647 - INFO - Application is healthy - check number 106
+2026-10-16 09:40:34,658 - INFO - Application is healthy - check number 107
+2026-10-16 09:40:44,669 - INFO - Application is healthy - check number 108
+2026-10-16 09:40:54,682 - INFO - Application is healthy - check number 109
+2026-10-16 09:41:04,693 - INFO - Application is healthy - check number 110
+2026-10-16 09:41:14,705 - INFO - Application is healthy - check number 111
+2026-10-16 09:41:24,717 - INFO - Application is healthy - check number 112
+2026-10-16 09:41:34,728 - INFO - Application is healthy - check number 113
+2026-10-16 09:41:44,740 - INFO - Application is healthy - check number 114
+2026-10-16 09:41:54,751 - INFO - Application is healthy - check number 115
+2026-10-16 09:42:04,762 - INFO - Application is healthy - check number 116
+2026-10-16 09:42:14,774 - INFO - Application is healthy - check number 117
+2026-10-16 09:42:24,785 - INFO - Application is healthy - check number 118
+2026-10-16 09:42:34,797 - INFO - Application is healthy - check number 119
+2026-10-16 09:42:44,808 - INFO - Application is healthy - check number 120
+2026-10-16 09:42:54,819 - INFO - Application is healthy - check number 121
+2026-10-16 09:43:04,831 - INFO - Application is healthy - check number 122
+2026-10-16 09:43:14,842 - INFO - Application is healthy - check number 123
+2026-10-16 09:43:24,853 - INFO - Application is healthy - check number 124
+2026-10-16 09:43:34,865 - INFO - Application is healthy - check number 125
+2026-10-16 09:43:44,877 - INFO - Application is healthy - check number 126
+2026-10-16 09:43:54,893 - INFO - Application is healthy - check number 127
+2026-10-16 09:44:04,904 - INFO - Application is healthy - check number 128
+2026-10-16 09:44:14,915 - INFO - Application is healthy - check number 129
+2026-10-16 09:44:24,926 - INFO - Application is healthy - check number 130
+2026-10-16 09:44:34,938 - INFO - Application is healthy - check number 131
+2026-10-16 09:44:44,949 - INFO - Application is healthy - check number 132
+2026-10-16 09:44:54,960 - INFO - Application is healthy - check number 133
+2026-10-16 09:45:04,971 - INFO - Application is healthy - check number 134
+2026-10-16 09:45:14,982 - INFO - Application is healthy - check number 135
+2026-10-16 09:45:24,994 - INFO - Application is healthy - check number 136
+2026-10-16 09:45:35,005 - INFO - Application is healthy - check number 137
+2026-10-16 09:45:45,017 - INFO - Application is healthy - check number 138
+2026-10-16 09:45:55,024 - INFO - Application is healthy - check number 139
+2026-10-16 09:46:05,034 - INFO - Application is healthy - check number 140
+2026-10-16 09:46:15,046 - INFO - Application is healthy - check number 141
+2026-10-16 09:46:25,057 - INFO - Application is healthy - check number 142
+2026-10-16 09:46:35,069 - INFO - Application is healthy - check number 143
+2026-10-16 09:46:45,080 - INFO - Application is healthy - check number 144
+2026-10-16 09:46:55,092 - INFO - Application is healthy - check number 145
+2026-10-16 09:47:05,103 - INFO - Application is healthy - check number 146
+2026-10-16 09:47:15,113 - INFO - Application is healthy - check number 147
+2026-10-16 09:47:25,125 - INFO - Application is healthy - check number 148
+2026-10-16 09:47:35,136 - INFO - Application is healthy - check number 149
+2026-10-16 09:47:45,152 - INFO - Application is healthy - check number 150
+2026-10-16 09:47:55,163 - INFO - Application is healthy - check number 151
+2026-10-16 09:48:05,174 - INFO - Application is healthy - check number 152
+2026-10-16 09:48:15,186 - INFO - Application is healthy - check number 153
+2026-10-16 09:48:25,197 - INFO - Application is healthy - check number 154
+2026-10-16 09:48:35,210 - INFO - Application is healthy - check number 155
+2026-10-16 09:48:45,221 - INFO - Application is healthy - check number 156
+^CTraceback (most recent call last):
+  File "/opt/Expr7/app.py", line 18, in <module>
+    time.sleep(10)
+KeyboardInterrupt
+
+vagrant@ig-ubuntu:/opt/Expr7$ sudo nano /etc/systemd/system/pyapp.service
+vagrant@ig-ubuntu:/opt/Expr7$ sudo systemctl daemon-reload
+vagrant@ig-ubuntu:/opt/Expr7$ sudo systemctl start pyapp.service
+vagrant@ig-ubuntu:/opt/Expr7$ sudo systemctl status pyapp.service
+● pyapp.service - Expr7 Python Application
+     Loaded: loaded (/etc/systemd/system/pyapp.service; disabled; vendor preset: enabled)
+     Active: active (running) since Fri 2026-10-16 09:49:58 UTC; 8s ago
+   Main PID: 2821 (python3)
+      Tasks: 1 (limit: 2042)
+     Memory: 4.3M
+        CPU: 19ms
+     CGroup: /system.slice/pyapp.service
+             └─2821 /usr/bin/python3 /opt/Expr7/app.py
+
+Oct 16 09:49:58 ig-ubuntu systemd[1]: Started Expr7 Python Application.
+Oct 16 09:49:58 ig-ubuntu python3[2821]: 2026-10-16 09:49:58,991 - INFO - InfraGuardian Python application starting
+Oct 16 09:49:58 ig-ubuntu python3[2821]: 2026-10-16 09:49:58,991 - INFO - Application is healthy - check number 1
+vagrant@ig-ubuntu:/opt/Expr7$ sudo journalctl -u pyapp.service -n 20
+Oct 16 09:49:58 ig-ubuntu systemd[1]: Started Expr7 Python Application.
+Oct 16 09:49:58 ig-ubuntu python3[2821]: 2026-10-16 09:49:58,991 - INFO - InfraGuardian Python application starting
+Oct 16 09:49:58 ig-ubuntu python3[2821]: 2026-10-16 09:49:58,991 - INFO - Application is healthy - check number 1
+Oct 16 09:50:09 ig-ubuntu python3[2821]: 2026-10-16 09:50:09,002 - INFO - Application is healthy - check number 2
+Oct 16 09:50:19 ig-ubuntu python3[2821]: 2026-10-16 09:50:19,013 - INFO - Application is healthy - check number 3
+Oct 16 09:50:29 ig-ubuntu python3[2821]: 2026-10-16 09:50:29,025 - INFO - Application is healthy - check number 4
+vagrant@ig-ubuntu:/opt/Expr7$ pgrep -af "/opt/Expr7/app.py"
+2821 /usr/bin/python3 /opt/Expr7/app.py
+vagrant@ig-ubuntu:/opt/Expr7$ sudo kill -9 3885
+kill: (3885): No such process
+vagrant@ig-ubuntu:/opt/Expr7$ sudo systemctl status pyapp.service
+● pyapp.service - Expr7 Python Application
+     Loaded: loaded (/etc/systemd/system/pyapp.service; disabled; vendor preset: enabled)
+     Active: active (running) since Fri 2026-10-16 09:49:58 UTC; 1min 41s ago
+   Main PID: 2821 (python3)
+      Tasks: 1 (limit: 2042)
+     Memory: 4.3M
+        CPU: 24ms
+     CGroup: /system.slice/pyapp.service
+             └─2821 /usr/bin/python3 /opt/Expr7/app.py
+
+Oct 16 09:50:09 ig-ubuntu python3[2821]: 2026-10-16 09:50:09,002 - INFO - Application is healthy - check number 2
+Oct 16 09:50:19 ig-ubuntu python3[2821]: 2026-10-16 09:50:19,013 - INFO - Application is healthy - check number 3
+Oct 16 09:50:29 ig-ubuntu python3[2821]: 2026-10-16 09:50:29,025 - INFO - Application is healthy - check number 4
+Oct 16 09:50:39 ig-ubuntu python3[2821]: 2026-10-16 09:50:39,036 - INFO - Application is healthy - check number 5
+Oct 16 09:50:49 ig-ubuntu python3[2821]: 2026-10-16 09:50:49,048 - INFO - Application is healthy - check number 6
+Oct 16 09:50:59 ig-ubuntu python3[2821]: 2026-10-16 09:50:59,059 - INFO - Application is healthy - check number 7
+Oct 16 09:51:09 ig-ubuntu python3[2821]: 2026-10-16 09:51:09,070 - INFO - Application is healthy - check number 8
+Oct 16 09:51:19 ig-ubuntu python3[2821]: 2026-10-16 09:51:19,082 - INFO - Application is healthy - check number 9
+Oct 16 09:51:29 ig-ubuntu python3[2821]: 2026-10-16 09:51:29,093 - INFO - Application is healthy - check number 10
+Oct 16 09:51:39 ig-ubuntu python3[2821]: 2026-10-16 09:51:39,104 - INFO - Application is healthy - check number 11
+vagrant@ig-ubuntu:/opt/Expr7$ sudo journalctl -u pyapp.service -n 30
+Oct 16 09:49:58 ig-ubuntu systemd[1]: Started Expr7 Python Application.
+Oct 16 09:49:58 ig-ubuntu python3[2821]: 2026-10-16 09:49:58,991 - INFO - InfraGuardian Python application starting
+Oct 16 09:49:58 ig-ubuntu python3[2821]: 2026-10-16 09:49:58,991 - INFO - Application is healthy - check number 1
+Oct 16 09:50:09 ig-ubuntu python3[2821]: 2026-10-16 09:50:09,002 - INFO - Application is healthy - check number 2
+Oct 16 09:50:19 ig-ubuntu python3[2821]: 2026-10-16 09:50:19,013 - INFO - Application is healthy - check number 3
+Oct 16 09:50:29 ig-ubuntu python3[2821]: 2026-10-16 09:50:29,025 - INFO - Application is healthy - check number 4
+Oct 16 09:50:39 ig-ubuntu python3[2821]: 2026-10-16 09:50:39,036 - INFO - Application is healthy - check number 5
+Oct 16 09:50:49 ig-ubuntu python3[2821]: 2026-10-16 09:50:49,048 - INFO - Application is healthy - check number 6
+Oct 16 09:50:59 ig-ubuntu python3[2821]: 2026-10-16 09:50:59,059 - INFO - Application is healthy - check number 7
+Oct 16 09:51:09 ig-ubuntu python3[2821]: 2026-10-16 09:51:09,070 - INFO - Application is healthy - check number 8
+Oct 16 09:51:19 ig-ubuntu python3[2821]: 2026-10-16 09:51:19,082 - INFO - Application is healthy - check number 9
+Oct 16 09:51:29 ig-ubuntu python3[2821]: 2026-10-16 09:51:29,093 - INFO - Application is healthy - check number 10
+Oct 16 09:51:39 ig-ubuntu python3[2821]: 2026-10-16 09:51:39,104 - INFO - Application is healthy - check number 11
+Oct 16 09:51:49 ig-ubuntu python3[2821]: 2026-10-16 09:51:49,117 - INFO - Application is healthy - check number 12
+vagrant@ig-ubuntu:/opt/Expr7$ 
