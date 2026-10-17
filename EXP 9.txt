@@ -1,0 +1,685 @@
+Last login: Sat Oct 17 11:59:37 on console
+asadali@asads-MacBook-Air ~ % cd /Users/asadali/2601600062/infraguardian 
+asadali@asads-MacBook-Air infraguardian % vagrant ssh rocky
+VM must be running to open SSH connection. Run `vagrant up`
+to start the virtual machine.
+asadali@asads-MacBook-Air infraguardian % vagrant up rocky
+Bringing machine 'rocky' up with 'virtualbox' provider...
+==> rocky: Checking if box 'bento/rockylinux-9' version '202510.26.0' is up to date...
+==> rocky: Clearing any previously set forwarded ports...
+==> rocky: Fixed port collision for 22 => 2222. Now on port 2250.
+==> rocky: Clearing any previously set network interfaces...
+==> rocky: Preparing network interfaces based on configuration...
+    rocky: Adapter 1: nat
+    rocky: Adapter 2: hostonly
+==> rocky: Forwarding ports...
+    rocky: 22 (guest) => 2250 (host) (adapter 1)
+==> rocky: Running 'pre-boot' VM customizations...
+==> rocky: Booting VM...
+==> rocky: Waiting for machine to boot. This may take a few minutes...
+    rocky: SSH address: 127.0.0.1:2250
+    rocky: SSH username: vagrant
+    rocky: SSH auth method: private key
+==> rocky: Machine booted and ready!
+==> rocky: Checking for guest additions in VM...
+==> rocky: Setting hostname...
+==> rocky: Configuring and enabling network interfaces...
+==> rocky: Mounting shared folders...
+    rocky: /Users/asadali/2601600062/infraguardian => /vagrant
+==> rocky: Machine already provisioned. Run `vagrant provision` or use the `--provision`
+==> rocky: flag to force provisioning. Provisioners marked to run always will still run.
+asadali@asads-MacBook-Air infraguardian % vagrant ssh rocky
+
+This system is built by the Bento project by Chef Software
+More information can be found at https://github.com/chef/bento
+
+Use of this system is acceptance of the OS vendor EULA and License Agreements.
+Last login: Tue Oct 13 06:45:47 2026 from 10.0.2.2
+[vagrant@ig-rocky ~]$ hostname
+ig-rocky
+[vagrant@ig-rocky ~]$ cat /etc/os-release
+NAME="Rocky Linux"
+VERSION="9.6 (Blue Onyx)"
+ID="rocky"
+ID_LIKE="rhel centos fedora"
+VERSION_ID="9.6"
+PLATFORM_ID="platform:el9"
+PRETTY_NAME="Rocky Linux 9.6 (Blue Onyx)"
+ANSI_COLOR="0;32"
+LOGO="fedora-logo-icon"
+CPE_NAME="cpe:/o:rocky:rocky:9::baseos"
+HOME_URL="https://rockylinux.org/"
+VENDOR_NAME="RESF"
+VENDOR_URL="https://resf.org/"
+BUG_REPORT_URL="https://bugs.rockylinux.org/"
+SUPPORT_END="2032-05-31"
+ROCKY_SUPPORT_PRODUCT="Rocky-Linux-9"
+ROCKY_SUPPORT_PRODUCT_VERSION="9.6"
+REDHAT_SUPPORT_PRODUCT="Rocky Linux"
+REDHAT_SUPPORT_PRODUCT_VERSION="9.6"
+[vagrant@ig-rocky ~]$ ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:1f:ae:8b brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic noprefixroute enp0s8
+       valid_lft 86236sec preferred_lft 86236sec
+    inet6 fd17:625c:f037:2:a00:27ff:fe1f:ae8b/64 scope global dynamic mngtmpaddr 
+       valid_lft 86238sec preferred_lft 14238sec
+    inet6 fe80::a00:27ff:fe1f:ae8b/64 scope link 
+       valid_lft forever preferred_lft forever
+3: enp0s9: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:77:0f:82 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.56.12/24 brd 192.168.56.255 scope global noprefixroute enp0s9
+       valid_lft forever preferred_lft forever
+    inet6 fd20:8194:8dfe:8351:a00:27ff:fe77:f82/64 scope global dynamic mngtmpaddr 
+       valid_lft 2591976sec preferred_lft 604776sec
+    inet6 fe80::a00:27ff:fe77:f82/64 scope link 
+       valid_lft forever preferred_lft forever
+[vagrant@ig-rocky ~]$ inet 192.168.56.11/24
+-bash: inet: command not found
+[vagrant@ig-rocky ~]$ sudo systemctl status sshd
+● sshd.service - OpenSSH server daemon
+     Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; preset: enabled)
+     Active: active (running) since Sat 2026-10-17 06:34:16 UTC; 4min 3s ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 700 (sshd)
+      Tasks: 1 (limit: 11456)
+     Memory: 6.5M
+        CPU: 46ms
+     CGroup: /system.slice/sshd.service
+             └─700 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+
+Oct 17 06:34:16 ig-rocky systemd[1]: Starting OpenSSH server daemon...
+Oct 17 06:34:16 ig-rocky sshd[700]: Server listening on 0.0.0.0 port 22.
+Oct 17 06:34:16 ig-rocky sshd[700]: Server listening on :: port 22.
+Oct 17 06:34:16 ig-rocky systemd[1]: Started OpenSSH server daemon.
+Oct 17 06:34:23 ig-rocky sshd[1065]: Accepted publickey for vagrant from 10.0.2.2 port 49206 ssh2: ED25519 SHA256:8P0N8>
+Oct 17 06:34:23 ig-rocky sshd[1065]: pam_unix(sshd:session): session opened for user vagrant(uid=1000) by vagrant(uid=0)
+Oct 17 06:34:25 ig-rocky sshd[1063]: Connection reset by 10.0.2.2 port 49205 [preauth]
+Oct 17 06:34:37 ig-rocky sshd[3713]: Accepted publickey for vagrant from 10.0.2.2 port 49207 ssh2: ED25519 SHA256:8P0N8>
+Oct 17 06:34:37 ig-rocky sshd[3713]: pam_unix(sshd:session): session opened for user vagrant(uid=1000) by vagrant(uid=0)
+[vagrant@ig-rocky ~]$ sudo systemctl enable
+Too few arguments.
+[vagrant@ig-rocky ~]$ sudo systemctl enable --now sshd 
+[vagrant@ig-rocky ~]$ sudo systemctl status sshd 
+● sshd.service - OpenSSH server daemon
+     Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; preset: enabled)
+     Active: active (running) since Sat 2026-10-17 06:34:16 UTC; 6min ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 700 (sshd)
+      Tasks: 1 (limit: 11456)
+     Memory: 6.8M
+        CPU: 46ms
+     CGroup: /system.slice/sshd.service
+             └─700 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+
+Oct 17 06:34:16 ig-rocky systemd[1]: Starting OpenSSH server daemon...
+Oct 17 06:34:16 ig-rocky sshd[700]: Server listening on 0.0.0.0 port 22.
+Oct 17 06:34:16 ig-rocky sshd[700]: Server listening on :: port 22.
+Oct 17 06:34:16 ig-rocky systemd[1]: Started OpenSSH server daemon.
+Oct 17 06:34:23 ig-rocky sshd[1065]: Accepted publickey for vagrant from 10.0.2.2 port 49206 ssh2: ED25519 SHA256:8P0N8>
+Oct 17 06:34:23 ig-rocky sshd[1065]: pam_unix(sshd:session): session opened for user vagrant(uid=1000) by vagrant(uid=0)
+Oct 17 06:34:25 ig-rocky sshd[1063]: Connection reset by 10.0.2.2 port 49205 [preauth]
+Oct 17 06:34:37 ig-rocky sshd[3713]: Accepted publickey for vagrant from 10.0.2.2 port 49207 ssh2: ED25519 SHA256:8P0N8>
+Oct 17 06:34:37 ig-rocky sshd[3713]: pam_unix(sshd:session): session opened for user vagrant(uid=1000) by vagrant(uid=0)
+[vagrant@ig-rocky ~]$ sudo useradd -m labuser
+[vagrant@ig-rocky ~]$ sudo passwd labuser
+Changing password for user labuser.
+New password: 
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password: 
+passwd: all authentication tokens updated successfully.
+[vagrant@ig-rocky ~]$ id labuser  
+uid=1001(labuser) gid=1001(labuser) groups=1001(labuser)
+[vagrant@ig-rocky ~]$ sudo dnf install fail2ban -y
+Rocky Linux 9 - BaseOS                                                                  411  B/s | 4.3 kB     00:10    
+Rocky Linux 9 - BaseOS                                                                  1.4 MB/s |  52 MB     00:37    
+Rocky Linux 9 - AppStream                                                               444  B/s | 4.8 kB     00:11    
+Rocky Linux 9 - AppStream                                                               1.3 MB/s |  32 MB     00:24    
+Rocky Linux 9 - Extras                                                                  288  B/s | 3.1 kB     00:10    
+No match for argument: fail2ban
+Error: Unable to find a match: fail2ban
+[vagrant@ig-rocky ~]$ sudo dnf install epel-release -y
+Last metadata expiration check: 0:02:59 ago on Sat 17 Oct 2026 06:43:32 AM UTC.
+Dependencies resolved.
+========================================================================================================================
+ Package                         Architecture              Version                      Repository                 Size
+========================================================================================================================
+Installing:
+ epel-release                    noarch                    9-10.el9                     extras                     19 k
+
+Transaction Summary
+========================================================================================================================
+Install  1 Package
+
+Total download size: 19 k
+Installed size: 26 k
+Downloading Packages:
+epel-release-9-10.el9.noarch.rpm                                                        3.5 kB/s |  19 kB     00:05    
+------------------------------------------------------------------------------------------------------------------------
+Total                                                                                   1.7 kB/s |  19 kB     00:10     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                1/1 
+  Installing       : epel-release-9-10.el9.noarch                                                                   1/1 
+  Running scriptlet: epel-release-9-10.el9.noarch                                                                   1/1 
+Many EPEL packages require the CodeReady Builder (CRB) repository.
+It is recommended that you run /usr/bin/crb enable to enable the CRB repository.
+
+  Verifying        : epel-release-9-10.el9.noarch                                                                   1/1 
+
+Installed:
+  epel-release-9-10.el9.noarch                                                                                          
+
+Complete!
+[vagrant@ig-rocky ~]$ sudo dnf makecache
+Extra Packages for Enterprise Linux 9 - aarch64                                         123 kB/s |  20 MB     02:46    
+Extra Packages for Enterprise Linux 9 openh264 (From Cisco) - aarch64                   156  B/s | 2.5 kB     00:16    
+Rocky Linux 9 - BaseOS                                                                  405  B/s | 4.3 kB     00:10    
+Rocky Linux 9 - AppStream                                                               458  B/s | 4.8 kB     00:10    
+Rocky Linux 9 - Extras                                                                  289  B/s | 3.1 kB     00:10    
+Metadata cache created.
+[vagrant@ig-rocky ~]$ sudo dnf install fail2ban fail2ban-firewalld -y
+Last metadata expiration check: 0:00:43 ago on Sat 17 Oct 2026 06:50:37 AM UTC.
+Dependencies resolved.
+========================================================================================================================
+ Package                           Architecture           Version                           Repository             Size
+========================================================================================================================
+Installing:
+ fail2ban                          noarch                 1.1.0-6.el9                       epel                  9.3 k
+ fail2ban-firewalld                noarch                 1.1.0-6.el9                       epel                  9.5 k
+Installing dependencies:
+ esmtp                             aarch64                1.2-19.el9                        epel                   50 k
+ fail2ban-selinux                  noarch                 1.1.0-6.el9                       epel                   31 k
+ fail2ban-sendmail                 noarch                 1.1.0-6.el9                       epel                   12 k
+ fail2ban-server                   noarch                 1.1.0-6.el9                       epel                  465 k
+ libesmtp                          aarch64                1.0.6-24.el9                      epel                   65 k
+ liblockfile                       aarch64                1.14-10.el9.0.1                   baseos                 27 k
+
+Transaction Summary
+========================================================================================================================
+Install  8 Packages
+
+Total download size: 669 k
+Installed size: 2.1 M
+Downloading Packages:
+(1/8): fail2ban-firewalld-1.1.0-6.el9.noarch.rpm                                        1.2 kB/s | 9.5 kB     00:07    
+(2/8): esmtp-1.2-19.el9.aarch64.rpm                                                     6.0 kB/s |  50 kB     00:08    
+(3/8): fail2ban-sendmail-1.1.0-6.el9.noarch.rpm                                          34 kB/s |  12 kB     00:00    
+(4/8): fail2ban-selinux-1.1.0-6.el9.noarch.rpm                                           32 kB/s |  31 kB     00:00    
+(5/8): libesmtp-1.0.6-24.el9.aarch64.rpm                                                 71 kB/s |  65 kB     00:00    
+(6/8): liblockfile-1.14-10.el9.0.1.aarch64.rpm                                          5.2 kB/s |  27 kB     00:05    
+(7/8): fail2ban-1.1.0-6.el9.noarch.rpm                                                  436  B/s | 9.3 kB     00:21    
+[MIRROR] fail2ban-server-1.1.0-6.el9.noarch.rpm: Curl error (28): Timeout was reached for https://ftp.kaist.ac.kr/pub/epel/9/Everything/aarch64/Packages/f/fail2ban-server-1.1.0-6.el9.noarch.rpm [Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds]
+[MIRROR] fail2ban-server-1.1.0-6.el9.noarch.rpm: Curl error (28): Timeout was reached for https://ftp.kaist.ac.kr/pub/epel/9/Everything/aarch64/Packages/f/fail2ban-server-1.1.0-6.el9.noarch.rpm [Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds]
+(8/8): fail2ban-server-1.1.0-6.el9.noarch.rpm                                           4.9 kB/s | 465 kB     01:35    
+------------------------------------------------------------------------------------------------------------------------
+Total                                                                                   5.8 kB/s | 669 kB     01:55     
+Extra Packages for Enterprise Linux 9 - aarch64                                         1.6 MB/s | 1.6 kB     00:00    
+Importing GPG key 0x3228467C:
+ Userid     : "Fedora (epel9) <epel@fedoraproject.org>"
+ Fingerprint: FF8A D134 4597 106E CE81 3B91 8A38 72BF 3228 467C
+ From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-9
+Key imported successfully
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                1/1 
+  Installing       : liblockfile-1.14-10.el9.0.1.aarch64                                                            1/8 
+  Installing       : libesmtp-1.0.6-24.el9.aarch64                                                                  2/8 
+  Installing       : esmtp-1.2-19.el9.aarch64                                                                       3/8 
+  Running scriptlet: esmtp-1.2-19.el9.aarch64                                                                       3/8 
+  Running scriptlet: fail2ban-selinux-1.1.0-6.el9.noarch                                                            4/8 
+  Installing       : fail2ban-selinux-1.1.0-6.el9.noarch                                                            4/8 
+  Running scriptlet: fail2ban-selinux-1.1.0-6.el9.noarch                                                            4/8 
+libsemanage.semanage_direct_install_info: Overriding fail2ban module at lower priority 100 with module at priority 200.
+
+  Installing       : fail2ban-server-1.1.0-6.el9.noarch                                                             5/8 
+  Running scriptlet: fail2ban-server-1.1.0-6.el9.noarch                                                             5/8 
+  Installing       : fail2ban-firewalld-1.1.0-6.el9.noarch                                                          6/8 
+  Installing       : fail2ban-sendmail-1.1.0-6.el9.noarch                                                           7/8 
+  Installing       : fail2ban-1.1.0-6.el9.noarch                                                                    8/8 
+  Running scriptlet: fail2ban-selinux-1.1.0-6.el9.noarch                                                            8/8 
+  Running scriptlet: fail2ban-1.1.0-6.el9.noarch                                                                    8/8 
+  Verifying        : esmtp-1.2-19.el9.aarch64                                                                       1/8 
+  Verifying        : fail2ban-1.1.0-6.el9.noarch                                                                    2/8 
+  Verifying        : fail2ban-firewalld-1.1.0-6.el9.noarch                                                          3/8 
+  Verifying        : fail2ban-selinux-1.1.0-6.el9.noarch                                                            4/8 
+  Verifying        : fail2ban-sendmail-1.1.0-6.el9.noarch                                                           5/8 
+  Verifying        : fail2ban-server-1.1.0-6.el9.noarch                                                             6/8 
+  Verifying        : libesmtp-1.0.6-24.el9.aarch64                                                                  7/8 
+  Verifying        : liblockfile-1.14-10.el9.0.1.aarch64                                                            8/8 
+
+Installed:
+  esmtp-1.2-19.el9.aarch64              fail2ban-1.1.0-6.el9.noarch            fail2ban-firewalld-1.1.0-6.el9.noarch  
+  fail2ban-selinux-1.1.0-6.el9.noarch   fail2ban-sendmail-1.1.0-6.el9.noarch   fail2ban-server-1.1.0-6.el9.noarch     
+  libesmtp-1.0.6-24.el9.aarch64         liblockfile-1.14-10.el9.0.1.aarch64   
+
+Complete!
+[vagrant@ig-rocky ~]$ sudo systemctl enable --now fail2ban
+Created symlink /etc/systemd/system/multi-user.target.wants/fail2ban.service → /usr/lib/systemd/system/fail2ban.service.
+[vagrant@ig-rocky ~]$ sudo systemctl status fail2ban
+● fail2ban.service - Fail2Ban Service
+     Loaded: loaded (/usr/lib/systemd/system/fail2ban.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2026-10-17 06:53:42 UTC; 10s ago
+       Docs: man:fail2ban(1)
+    Process: 4511 ExecStartPre=/bin/mkdir -p /run/fail2ban (code=exited, status=0/SUCCESS)
+   Main PID: 4512 (fail2ban-server)
+      Tasks: 3 (limit: 11456)
+     Memory: 12.0M
+        CPU: 29ms
+     CGroup: /system.slice/fail2ban.service
+             └─4512 /usr/bin/python3 -s /usr/bin/fail2ban-server -xf start
+
+Oct 17 06:53:42 ig-rocky systemd[1]: Starting Fail2Ban Service...
+Oct 17 06:53:42 ig-rocky systemd[1]: Started Fail2Ban Service.
+Oct 17 06:53:42 ig-rocky fail2ban-server[4512]: Server ready
+[vagrant@ig-rocky ~]$ sudo nano /etc/fail2ban/jail.local
+[vagrant@ig-rocky ~]$ sudo systemctl restart fail2ban
+[vagrant@ig-rocky ~]$ sudo fail2ban-client status sshd 
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	0
+|  |- Total failed:	0
+|  `- Journal matches:	_SYSTEMD_UNIT=sshd.service + _COMM=sshd + _COMM=sshd-session
+`- Actions
+   |- Currently banned:	0
+   |- Total banned:	0
+   `- Banned IP list:
+ UBUNTU
+Last login: Sat Oct 17 12:32:48 on ttys001
+asadali@asads-MacBook-Air ~ % cd /Users/asadali/2601600062/infraguardian 
+asadali@asads-MacBook-Air infraguardian % vagrant up ubuntu 
+Bringing machine 'ubuntu' up with 'virtualbox' provider...
+==> ubuntu: Checking if box 'bento/ubuntu-22.04' version '202510.26.0' is up to date...
+==> ubuntu: Clearing any previously set forwarded ports...
+==> ubuntu: Fixed port collision for 22 => 2222. Now on port 2249.
+==> ubuntu: Clearing any previously set network interfaces...
+==> ubuntu: Preparing network interfaces based on configuration...
+    ubuntu: Adapter 1: nat
+    ubuntu: Adapter 2: hostonly
+==> ubuntu: Forwarding ports...
+    ubuntu: 22 (guest) => 2249 (host) (adapter 1)
+==> ubuntu: Running 'pre-boot' VM customizations...
+==> ubuntu: Booting VM...
+==> ubuntu: Waiting for machine to boot. This may take a few minutes...
+    ubuntu: SSH address: 127.0.0.1:2249
+    ubuntu: SSH username: vagrant
+    ubuntu: SSH auth method: private key
+    ubuntu: Warning: Connection reset. Retrying...
+==> ubuntu: Machine booted and ready!
+==> ubuntu: Checking for guest additions in VM...
+==> ubuntu: Setting hostname...
+==> ubuntu: Configuring and enabling network interfaces...
+==> ubuntu: Mounting shared folders...
+    ubuntu: /Users/asadali/2601600062/infraguardian => /vagrant
+==> ubuntu: Machine already provisioned. Run `vagrant provision` or use the `--provision`
+==> ubuntu: flag to force provisioning. Provisioners marked to run always will still run.
+asadali@asads-MacBook-Air infraguardian % vagrant ssh ubuntu                         
+Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.0-160-generic aarch64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Sat Oct 17 07:05:15 AM UTC 2026
+
+  System load:           0.81
+  Usage of /:            20.0% of 29.82GB
+  Memory usage:          12%
+  Swap usage:            0%
+  Processes:             112
+  Users logged in:       0
+  IPv4 address for eth0: 10.0.2.15
+  IPv6 address for eth0: fd17:625c:f037:2:a00:27ff:fed9:fa93
+
+
+This system is built by the Bento project by Chef Software
+More information can be found at https://github.com/chef/bento
+
+Use of this system is acceptance of the OS vendor EULA and License Agreements.
+Last login: Fri Oct 16 09:13:13 2026 from 10.0.2.2
+vagrant@ig-ubuntu:~$ hostname
+ig-ubuntu
+vagrant@ig-ubuntu:~$ ip addr
+
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:d9:fa:93 brd ff:ff:ff:ff:ff:ff
+    altname enp0s8
+    inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic eth0
+       valid_lft 86344sec preferred_lft 86344sec
+    inet6 fd17:625c:f037:2:a00:27ff:fed9:fa93/64 scope global dynamic mngtmpaddr noprefixroute 
+       valid_lft 86345sec preferred_lft 14345sec
+    inet6 fe80::a00:27ff:fed9:fa93/64 scope link 
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:28:fa:59 brd ff:ff:ff:ff:ff:ff
+    altname enp0s9
+    inet 192.168.56.11/24 brd 192.168.56.255 scope global eth1
+       valid_lft forever preferred_lft forever
+    inet6 fd20:8194:8dfe:8351:a00:27ff:fe28:fa59/64 scope global dynamic mngtmpaddr noprefixroute 
+       valid_lft 2591945sec preferred_lft 604745sec
+    inet6 fe80::a00:27ff:fe28:fa59/64 scope link 
+       valid_lft forever preferred_lft forever
+vagrant@ig-ubuntu:~$ ping -c 4 192.168.56.11
+PING 192.168.56.11 (192.168.56.11) 56(84) bytes of data.
+64 bytes from 192.168.56.11: icmp_seq=1 ttl=64 time=0.039 ms
+64 bytes from 192.168.56.11: icmp_seq=2 ttl=64 time=0.117 ms
+64 bytes from 192.168.56.11: icmp_seq=3 ttl=64 time=0.116 ms
+64 bytes from 192.168.56.11: icmp_seq=4 ttl=64 time=0.087 ms
+
+--- 192.168.56.11 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3070ms
+rtt min/avg/max/mdev = 0.039/0.089/0.117/0.031 ms
+vagrant@ig-ubuntu:~$ ssh labuser@192.168.56.11 
+The authenticity of host '192.168.56.11 (192.168.56.11)' can't be established.
+ED25519 key fingerprint is SHA256:WDizFTyKGWwUFuOwRm0jlNAJ+A3IxLzqcHpFHuhXkRg.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.56.11' (ED25519) to the list of known hosts.
+labuser@192.168.56.11's password: 
+Permission denied, please try again.
+labuser@192.168.56.11's password: 
+asPermission denied, please try again.
+labuser@192.168.56.11's password: 
+Connection closed by 192.168.56.11 port 22
+vagrant@ig-ubuntu:~$ ssh labuser@192.168.56.11 
+labuser@192.168.56.11's password: 
+roPermission denied, please try again.
+labuser@192.168.56.11's password: 
+
+vagrant@ig-ubuntu:~$ ssh labuser@192.168.56.11 
+labuser@192.168.56.11's password: 
+asadPermission denied, please try again.
+labuser@192.168.56.11's password: 
+asad
+Permission denied, please try again.
+labuser@192.168.56.11's password: 
+
+vagrant@ig-ubuntu:~$ ssh labuser@192.168.56.12
+The authenticity of host '192.168.56.12 (192.168.56.12)' can't be established.
+ED25519 key fingerprint is SHA256:toQnxqQoPmF3MIohSeY6m/IXxoWgZ6W0nQFoQXHnhkM.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.56.12' (ED25519) to the list of known hosts.
+labuser@192.168.56.12's password: 
+APermission denied, please try again.
+labuser@192.168.56.12's password: 
+
+This system is built by the Bento project by Chef Software
+More information can be found at https://github.com/chef/bento
+
+Use of this system is acceptance of the OS vendor EULA and License Agreements.
+Last failed login: Sat Oct 17 07:21:35 UTC 2026 from 192.168.56.11 on ssh:notty
+There was 1 failed login attempt since the last successful login.
+[labuser@ig-rocky ~]$ Connection to 192.168.56.12 closed by remote host.
+Connection to 192.168.56.12 closed.
+vagrant@ig-ubuntu:~$ 
+ 
+ROCKY
+
+[vagrant@ig-rocky ~]$ [200~sudo passwd labuser~
+-bash: [200~sudo: command not found
+[vagrant@ig-rocky ~]$ sudo passwd labuser
+Changing password for user labuser.
+New password: 
+Retype new password: 
+Sorry, passwords do not match.
+New password: 
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password: 
+passwd: all authentication tokens updated successfully.
+[vagrant@ig-rocky ~]$ ip -4 addr show enp0s9
+3: enp0s9: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    inet 192.168.56.12/24 brd 192.168.56.255 scope global noprefixroute enp0s9
+       valid_lft forever preferred_lft forever
+[vagrant@ig-rocky ~]$ sudo passwd labuser
+Changing password for user labuser.
+New password: 
+Retype new password: 
+passwd: all authentication tokens updated successfully.
+[vagrant@ig-rocky ~]$ sudo passwd -S labuser
+labuser PS 2026-10-17 0 99999 7 -1 (Password set, SHA512 crypt.)
+[vagrant@ig-rocky ~]$ Whoami
+-bash: Whoami: command not found
+[vagrant@ig-rocky ~]$ whoami
+vagrant
+[vagrant@ig-rocky ~]$ exit
+logout
+asadali@asads-MacBook-Air infraguardian % sudo journalctl -u fail2ban
+Password:
+Sorry, try again.
+Password:
+Sorry, try again.
+Password:
+sudo: 3 incorrect password attempts
+asadali@asads-MacBook-Air infraguardian % sudo tail /var/log/fail2ban.log
+Password:
+Sorry, try again.
+Password:
+sudo: 1 incorrect password attempt
+asadali@asads-MacBook-Air infraguardian % vagrant ssh rocky
+
+This system is built by the Bento project by Chef Software
+More information can be found at https://github.com/chef/bento
+
+Use of this system is acceptance of the OS vendor EULA and License Agreements.
+Last login: Sat Oct 17 06:34:37 2026 from 10.0.2.2
+[vagrant@ig-rocky ~]$ sudo fail2ban-client status sshd
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	0
+|  |- Total failed:	1
+|  `- Journal matches:	_SYSTEMD_UNIT=sshd.service + _COMM=sshd + _COMM=sshd-session
+`- Actions
+   |- Currently banned:	0
+   |- Total banned:	0
+   `- Banned IP list:	
+[vagrant@ig-rocky ~]$ sudo journalctl -u fail2ban -n 20
+Oct 17 06:53:42 ig-rocky systemd[1]: Starting Fail2Ban Service...
+Oct 17 06:53:42 ig-rocky systemd[1]: Started Fail2Ban Service.
+Oct 17 06:53:42 ig-rocky fail2ban-server[4512]: Server ready
+Oct 17 07:00:00 ig-rocky systemd[1]: Stopping Fail2Ban Service...
+Oct 17 07:00:00 ig-rocky fail2ban-client[4529]: Shutdown successful
+Oct 17 07:00:00 ig-rocky systemd[1]: fail2ban.service: Deactivated successfully.
+Oct 17 07:00:00 ig-rocky systemd[1]: Stopped Fail2Ban Service.
+Oct 17 07:00:00 ig-rocky systemd[1]: Starting Fail2Ban Service...
+Oct 17 07:00:00 ig-rocky systemd[1]: Started Fail2Ban Service.
+Oct 17 07:00:00 ig-rocky fail2ban-server[4531]: Server ready
+[vagrant@ig-rocky ~]$ sudo tail /var/log/fail2ban.log
+2026-10-17 07:00:00,712 fail2ban.jail           [4531]: INFO    Initiated 'systemd' backend
+2026-10-17 07:00:00,712 fail2ban.filter         [4531]: INFO      maxLines: 1
+2026-10-17 07:00:00,717 fail2ban.filtersystemd  [4531]: INFO    [sshd] Added journal match for: '_SYSTEMD_UNIT=sshd.service + _COMM=sshd + _COMM=sshd-session'
+2026-10-17 07:00:00,717 fail2ban.filter         [4531]: INFO      maxRetry: 3
+2026-10-17 07:00:00,717 fail2ban.filter         [4531]: INFO      findtime: 600
+2026-10-17 07:00:00,717 fail2ban.actions        [4531]: INFO      banTime: 600
+2026-10-17 07:00:00,717 fail2ban.filter         [4531]: INFO      encoding: UTF-8
+2026-10-17 07:00:00,719 fail2ban.filtersystemd  [4531]: INFO    [sshd] Jail is in operation now (process new journal entries)
+2026-10-17 07:00:00,719 fail2ban.jail           [4531]: INFO    Jail 'sshd' started
+2026-10-17 07:21:41,024 fail2ban.filter         [4531]: INFO    [sshd] Found 192.168.56.11 - 2026-10-17 07:21:35
+[vagrant@ig-rocky ~]$ sudo fail2ban-client status sshd
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	0
+|  |- Total failed:	1
+|  `- Journal matches:	_SYSTEMD_UNIT=sshd.service + _COMM=sshd + _COMM=sshd-session
+`- Actions
+   |- Currently banned:	0
+   |- Total banned:	0
+   `- Banned IP list:	
+[vagrant@ig-rocky ~]$ sudo fail2ban-client set sshd unbanip 192.168.56.10
+0
+[vagrant@ig-rocky ~]$ sudo fail2ban-client status sshd
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	0
+|  |- Total failed:	1
+|  `- Journal matches:	_SYSTEMD_UNIT=sshd.service + _COMM=sshd + _COMM=sshd-session
+`- Actions
+   |- Currently banned:	0
+   |- Total banned:	0
+   `- Banned IP list:	
+[vagrant@ig-rocky ~]$ sudo fail2ban-client set sshd unbanip 192.168.56.10
+0
+[vagrant@ig-rocky ~]$ sudo fail2ban-client status sshd
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	0
+|  |- Total failed:	1
+|  `- Journal matches:	_SYSTEMD_UNIT=sshd.service + _COMM=sshd + _COMM=sshd-session
+`- Actions
+   |- Currently banned:	0
+   |- Total banned:	0
+   `- Banned IP list:	
+[vagrant@ig-rocky ~]$ sudo dnf install audit -y
+Last metadata expiration check: 0:36:20 ago on Sat 17 Oct 2026 07:03:33 AM UTC.
+Package audit-3.1.5-4.el9.aarch64 is already installed.
+Dependencies resolved.
+========================================================================================================================
+ Package                        Architecture             Version                       Repository                  Size
+========================================================================================================================
+Upgrading:
+ audit                          aarch64                  3.1.5-8.el9                   baseos                     250 k
+ audit-libs                     aarch64                  3.1.5-8.el9                   baseos                     120 k
+ python3-audit                  aarch64                  3.1.5-8.el9                   appstream                   83 k
+
+Transaction Summary
+========================================================================================================================
+Upgrade  3 Packages
+
+Total download size: 452 k
+Downloading Packages:
+(1/3): audit-libs-3.1.5-8.el9.aarch64.rpm                                                23 kB/s | 120 kB     00:05    
+(2/3): python3-audit-3.1.5-8.el9.aarch64.rpm                                             16 kB/s |  83 kB     00:05    
+(3/3): audit-3.1.5-8.el9.aarch64.rpm                                                     46 kB/s | 250 kB     00:05    
+------------------------------------------------------------------------------------------------------------------------
+Total                                                                                    27 kB/s | 452 kB     00:16     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                1/1 
+  Upgrading        : audit-libs-3.1.5-8.el9.aarch64                                                                 1/6 
+  Upgrading        : audit-3.1.5-8.el9.aarch64                                                                      2/6 
+  Running scriptlet: audit-3.1.5-8.el9.aarch64                                                                      2/6 
+Warning: The unit file, source configuration file or drop-ins of auditd.service changed on disk. Run 'systemctl daemon-reload' to reload units.
+
+  Upgrading        : python3-audit-3.1.5-8.el9.aarch64                                                              3/6 
+  Cleanup          : python3-audit-3.1.5-4.el9.aarch64                                                              4/6 
+  Running scriptlet: audit-3.1.5-4.el9.aarch64                                                                      5/6 
+  Cleanup          : audit-3.1.5-4.el9.aarch64                                                                      5/6 
+  Cleanup          : audit-libs-3.1.5-4.el9.aarch64                                                                 6/6 
+  Running scriptlet: audit-libs-3.1.5-4.el9.aarch64                                                                 6/6 
+  Verifying        : audit-3.1.5-8.el9.aarch64                                                                      1/6 
+  Verifying        : audit-3.1.5-4.el9.aarch64                                                                      2/6 
+  Verifying        : audit-libs-3.1.5-8.el9.aarch64                                                                 3/6 
+  Verifying        : audit-libs-3.1.5-4.el9.aarch64                                                                 4/6 
+  Verifying        : python3-audit-3.1.5-8.el9.aarch64                                                              5/6 
+  Verifying        : python3-audit-3.1.5-4.el9.aarch64                                                              6/6 
+
+Upgraded:
+  audit-3.1.5-8.el9.aarch64          audit-libs-3.1.5-8.el9.aarch64          python3-audit-3.1.5-8.el9.aarch64         
+
+Complete!
+[vagrant@ig-rocky ~]$ sudo systemctl enable --now auditd
+[vagrant@ig-rocky ~]$ sudo systemctl status auditd
+● auditd.service - Security Auditing Service
+     Loaded: loaded (/usr/lib/systemd/system/auditd.service; enabled; preset: enabled)
+     Active: active (running) since Sat 2026-10-17 07:40:10 UTC; 28s ago
+       Docs: man:auditd(8)
+             https://github.com/linux-audit/audit-documentation
+   Main PID: 4744 (auditd)
+      Tasks: 4 (limit: 11456)
+     Memory: 1.5M
+        CPU: 12ms
+     CGroup: /system.slice/auditd.service
+             ├─4744 /sbin/auditd
+             └─4746 /usr/sbin/sedispatch
+
+Oct 17 07:40:10 ig-rocky augenrules[4764]: enabled 1
+Oct 17 07:40:10 ig-rocky augenrules[4764]: failure 1
+Oct 17 07:40:10 ig-rocky augenrules[4764]: pid 4744
+Oct 17 07:40:10 ig-rocky augenrules[4764]: rate_limit 0
+Oct 17 07:40:10 ig-rocky augenrules[4764]: backlog_limit 8192
+Oct 17 07:40:10 ig-rocky augenrules[4764]: lost 0
+Oct 17 07:40:10 ig-rocky augenrules[4764]: backlog 8
+Oct 17 07:40:10 ig-rocky augenrules[4764]: backlog_wait_time 60000
+Oct 17 07:40:10 ig-rocky augenrules[4764]: backlog_wait_time_actual 0
+Oct 17 07:40:10 ig-rocky systemd[1]: Started Security Auditing Service.
+[vagrant@ig-rocky ~]$ sudo auditctl -w /etc/passwd -p wa -k passwd_changes
+Old style watch rules are slower
+[vagrant@ig-rocky ~]$ sudo auditctl -l
+-w /etc/passwd -p wa -k passwd_changes
+[vagrant@ig-rocky ~]$ sudo useradd audit_test
+[vagrant@ig-rocky ~]$ grep audit_test /etc/passwd
+audit_test:x:1002:1002::/home/audit_test:/bin/bash
+[vagrant@ig-rocky ~]$ sudo ausearch -k passwd_changes
+----
+time->Sat Oct 17 07:41:09 2026
+type=PROCTITLE msg=audit(1792222869.649:1122): proctitle=617564697463746C002D77002F6574632F706173737764002D70007761002D6B007061737377645F6368616E676573
+type=SYSCALL msg=audit(1792222869.649:1122): arch=c00000b7 syscall=206 success=yes exit=1084 a0=4 a1=ffffd8b2d0e0 a2=43c a3=0 items=0 ppid=4917 pid=4919 auid=1000 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts0 ses=7 comm="auditctl" exe="/usr/sbin/auditctl" subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key=(null)
+type=CONFIG_CHANGE msg=audit(1792222869.649:1122): auid=1000 ses=7 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 op=add_rule key="passwd_changes" list=4 res=1
+----
+time->Sat Oct 17 07:41:57 2026
+type=PROCTITLE msg=audit(1792222917.759:1135): proctitle=757365726164640061756469745F74657374
+type=PATH msg=audit(1792222917.759:1135): item=0 name="/etc/passwd" inode=100925004 dev=08:03 mode=0100644 ouid=0 ogid=0 rdev=00:00 obj=system_u:object_r:passwd_file_t:s0 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=CWD msg=audit(1792222917.759:1135): cwd="/home/vagrant"
+type=SYSCALL msg=audit(1792222917.759:1135): arch=c00000b7 syscall=56 success=yes exit=5 a0=ffffffffffffff9c a1=aaaaddc90568 a2=8902 a3=0 items=1 ppid=4925 pid=4927 auid=1000 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts0 ses=7 comm="useradd" exe="/usr/sbin/useradd" subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key="passwd_changes"
+----
+time->Sat Oct 17 07:41:57 2026
+type=PROCTITLE msg=audit(1792222917.769:1138): proctitle=757365726164640061756469745F74657374
+type=PATH msg=audit(1792222917.769:1138): item=4 name="/etc/passwd" inode=100879271 dev=08:03 mode=0100644 ouid=0 ogid=0 rdev=00:00 obj=system_u:object_r:passwd_file_t:s0 nametype=CREATE cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=PATH msg=audit(1792222917.769:1138): item=3 name="/etc/passwd" inode=100925004 dev=08:03 mode=0100644 ouid=0 ogid=0 rdev=00:00 obj=system_u:object_r:passwd_file_t:s0 nametype=DELETE cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=PATH msg=audit(1792222917.769:1138): item=2 name="/etc/passwd+" inode=100879271 dev=08:03 mode=0100644 ouid=0 ogid=0 rdev=00:00 obj=system_u:object_r:passwd_file_t:s0 nametype=DELETE cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=PATH msg=audit(1792222917.769:1138): item=1 name="/etc/" inode=100663425 dev=08:03 mode=040755 ouid=0 ogid=0 rdev=00:00 obj=system_u:object_r:etc_t:s0 nametype=PARENT cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=PATH msg=audit(1792222917.769:1138): item=0 name="/etc/" inode=100663425 dev=08:03 mode=040755 ouid=0 ogid=0 rdev=00:00 obj=system_u:object_r:etc_t:s0 nametype=PARENT cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=CWD msg=audit(1792222917.769:1138): cwd="/home/vagrant"
+type=SYSCALL msg=audit(1792222917.769:1138): arch=c00000b7 syscall=38 success=yes exit=0 a0=ffffffffffffff9c a1=ffffc5eeb7c8 a2=ffffffffffffff9c a3=aaaaddc90568 items=5 ppid=4925 pid=4927 auid=1000 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts0 ses=7 comm="useradd" exe="/usr/sbin/useradd" subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key="passwd_changes"
+[vagrant@ig-rocky ~]$ sudo aureport -f
+
+File Report
+===============================================
+# date time file syscall success exe auid event
+===============================================
+1. 10/17/2026 07:41:57 /etc/passwd 56 yes /usr/sbin/useradd 1000 1135
+2. 10/17/2026 07:41:57 /etc/ 38 yes /usr/sbin/useradd 1000 1138
+[vagrant@ig-rocky ~]$ sudo userdel -r audit_test
+[vagrant@ig-rocky ~]$ sudo userdel -r labuser
+userdel: user labuser is currently used by process 4592
+[vagrant@ig-rocky ~]$ ps -fp 4592
+UID          PID    PPID  C STIME TTY          TIME CMD
+labuser     4592       1  0 07:21 ?        00:00:00 /usr/lib/systemd/systemd --user
+[vagrant@ig-rocky ~]$ sudo loginctl list-sessions
+SESSION  UID USER    SEAT TTY   STATE  IDLE SINCE
+      5 1001 labuser      pts/1 active no        
+      7 1000 vagrant      pts/0 active no        
+
+2 sessions listed.
+[vagrant@ig-rocky ~]$ sudo loginctl terminate-session 5
+[vagrant@ig-rocky ~]$ sudo loginctl list-sessions
+SESSION  UID USER    SEAT TTY   STATE  IDLE SINCE
+      7 1000 vagrant      pts/0 active no        
+
+1 sessions listed.
+[vagrant@ig-rocky ~]$ sudo userdel -r labuser
+[vagrant@ig-rocky ~]$ grep labuser /etc/passwd
+[vagrant@ig-rocky ~]$ 
